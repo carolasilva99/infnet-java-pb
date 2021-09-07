@@ -2,6 +2,7 @@ package br.com.carolina.venturahr_usuario.model.domain;
 
 import br.com.carolina.venturahr_usuario.model.domain.enums.StatusUsuario;
 import br.com.carolina.venturahr_usuario.model.domain.enums.TipoUsuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -24,6 +25,9 @@ public abstract class Usuario {
     private String telefone;
     @Enumerated(EnumType.ORDINAL)
     private StatusUsuario status;
+    @Enumerated(EnumType.ORDINAL)
+    private TipoUsuario tipo;
+
 
     public int getId() {
         return id;
@@ -49,6 +53,7 @@ public abstract class Usuario {
         this.endereco = endereco;
     }
 
+    @JsonIgnore
     public String getSenha() {
         return senha;
     }
@@ -71,5 +76,13 @@ public abstract class Usuario {
 
     public void setStatus(StatusUsuario status) {
         this.status = status;
+    }
+
+    public TipoUsuario getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
     }
 }

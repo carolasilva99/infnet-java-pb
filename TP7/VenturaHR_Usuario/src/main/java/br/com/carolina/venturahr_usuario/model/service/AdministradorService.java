@@ -2,6 +2,7 @@ package br.com.carolina.venturahr_usuario.model.service;
 
 import br.com.carolina.venturahr_usuario.model.domain.Administrador;
 import br.com.carolina.venturahr_usuario.model.domain.enums.StatusUsuario;
+import br.com.carolina.venturahr_usuario.model.domain.enums.TipoUsuario;
 import br.com.carolina.venturahr_usuario.model.exception.UsuarioNaoEncontradoException;
 import br.com.carolina.venturahr_usuario.model.infra.repository.AdministradorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class AdministradorService {
     public Administrador incluir(Administrador administrador) {
         validaAdministrador(administrador);
         administrador.setStatus(StatusUsuario.DESBLOQUEADO);
+        administrador.setTipo(TipoUsuario.ADMIN);
         return administradorRepository.save(administrador);
     }
 

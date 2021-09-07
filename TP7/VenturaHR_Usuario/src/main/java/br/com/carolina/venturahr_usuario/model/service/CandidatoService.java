@@ -20,6 +20,7 @@ public class CandidatoService {
     public Candidato incluir(Candidato candidato) {
         validaCandidato(candidato);
         candidato.setStatus(StatusUsuario.DESBLOQUEADO);
+        candidato.setTipo(TipoUsuario.CANDIDATO);
         return candidatoRepository.save(candidato);
     }
 

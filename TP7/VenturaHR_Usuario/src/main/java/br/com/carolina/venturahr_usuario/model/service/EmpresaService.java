@@ -2,6 +2,7 @@ package br.com.carolina.venturahr_usuario.model.service;
 
 import br.com.carolina.venturahr_usuario.model.domain.Empresa;
 import br.com.carolina.venturahr_usuario.model.domain.enums.StatusUsuario;
+import br.com.carolina.venturahr_usuario.model.domain.enums.TipoUsuario;
 import br.com.carolina.venturahr_usuario.model.exception.CampoDuplicadoException;
 import br.com.carolina.venturahr_usuario.model.exception.UsuarioNaoEncontradoException;
 import br.com.carolina.venturahr_usuario.model.infra.repository.EmpresaRepository;
@@ -19,6 +20,7 @@ public class EmpresaService {
     public Empresa incluir(Empresa empresa) {
         validaEmpresa(empresa);
         empresa.setStatus(StatusUsuario.DESBLOQUEADO);
+        empresa.setTipo(TipoUsuario.EMPRESA);
         return empresaRepository.save(empresa);
     }
 
