@@ -11,7 +11,6 @@ public class Candidato extends Usuario {
     private String cpf;
 
     @NotBlank(message = "É obrigatório informar o nome")
-    @Column(nullable = false)
     private String nome;
 
     public String getCpf() {

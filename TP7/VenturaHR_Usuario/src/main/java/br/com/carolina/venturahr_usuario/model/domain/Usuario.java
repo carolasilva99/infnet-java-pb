@@ -3,6 +3,7 @@ package br.com.carolina.venturahr_usuario.model.domain;
 import br.com.carolina.venturahr_usuario.model.domain.enums.StatusUsuario;
 import br.com.carolina.venturahr_usuario.model.domain.enums.TipoUsuario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -19,13 +20,14 @@ public abstract class Usuario {
     private String endereco;
     @NotBlank(message = "É obrigatório informar uma senha")
     @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;
     @NotBlank(message = "É obrigatório informar um telefone")
     @Column(nullable = false)
     private String telefone;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private StatusUsuario status;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private TipoUsuario tipo;
 
 
@@ -53,7 +55,6 @@ public abstract class Usuario {
         this.endereco = endereco;
     }
 
-    @JsonIgnore
     public String getSenha() {
         return senha;
     }

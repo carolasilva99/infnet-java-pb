@@ -5,9 +5,8 @@ import javax.persistence.Entity;
 
 @Entity
 public class Empresa extends Usuario {
-    @Column(unique=true, nullable = false)
+    @Column(unique=true)
     private String cnpj;
-    @Column(nullable = false)
     private String razaoSocial;
 
     public String getCnpj() {
