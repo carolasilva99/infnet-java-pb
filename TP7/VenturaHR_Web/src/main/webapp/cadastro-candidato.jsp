@@ -29,36 +29,57 @@
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-                <div class="col-lg-5 d-none d-lg-block bg-login-image"></div>
+                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Faça Login!</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Crie uma conta!</h1>
                         </div>
                         <form class="user">
                             <div class="form-group row">
-                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user" id="exampleFirstName"
                                            placeholder="Nome">
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                           placeholder="E-mail">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" class="form-control form-control-user" id="telefone"
+                                           placeholder="Telefone">
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" class="form-control form-control-user" id="cpf"
+                                           placeholder="CPF">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12 mb-3 mb-sm-0">
+                                    <input type="text" class="form-control form-control-user" id="endereco"
+                                           placeholder="Endereço">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user"
                                            id="exampleInputPassword" placeholder="Senha">
                                 </div>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control form-control-user"
+                                           id="exampleRepeatPassword" placeholder="Repetir senha">
+                                </div>
                             </div>
-                            <a href="${pageContext.request.contextPath}/index.jsp" class="btn btn-primary btn-user btn-block">
-                                Login
+                            <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                Criar Conta
                             </a>
                             <hr>
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="${pageContext.request.contextPath}/cadastro-candidato.jsp">É um candidato e não tem uma conta? Cadastre-se!</a>
-                        </div>
-                        <div class="text-center">
-                            <a class="small" href="${pageContext.request.contextPath}/cadastro-empresa.jsp">É uma empresa e não tem conta? Cadastre-se!</a>
+                            <a class="small" href="${pageContext.request.contextPath}/index.jsp">Já tem uma conta? Login!</a>
                         </div>
                     </div>
                 </div>
