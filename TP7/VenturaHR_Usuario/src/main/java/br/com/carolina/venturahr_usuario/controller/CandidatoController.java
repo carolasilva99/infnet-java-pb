@@ -1,9 +1,8 @@
 package br.com.carolina.venturahr_usuario.controller;
 
 import br.com.carolina.venturahr_usuario.model.domain.Candidato;
-import br.com.carolina.venturahr_usuario.model.exception.CpfDuplicadoException;
-import br.com.carolina.venturahr_usuario.model.exception.EmailDuplicadoException;
-import br.com.carolina.venturahr_usuario.model.exception.UsuarioNaoEncontrado;
+import br.com.carolina.venturahr_usuario.model.exception.CampoDuplicadoException;
+import br.com.carolina.venturahr_usuario.model.exception.UsuarioNaoEncontradoException;
 import br.com.carolina.venturahr_usuario.model.service.CandidatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ public class CandidatoController {
         try {
             return candidatoService.incluir(candidato);
         }
-        catch(CpfDuplicadoException | EmailDuplicadoException ex) {
+        catch(CampoDuplicadoException ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
         }
         catch(Exception ex) {
@@ -46,7 +45,7 @@ public class CandidatoController {
         try {
             return candidatoService.buscarPorId(id);
         }
-        catch(UsuarioNaoEncontrado ex) {
+        catch(UsuarioNaoEncontradoException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
         catch(Exception ex) {
@@ -59,7 +58,7 @@ public class CandidatoController {
         try {
             return candidatoService.buscarPorCpf(cpf);
         }
-        catch(UsuarioNaoEncontrado ex) {
+        catch(UsuarioNaoEncontradoException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
         catch(Exception ex) {

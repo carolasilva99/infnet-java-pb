@@ -1,7 +1,7 @@
 package br.com.carolina.venturahr_usuario.model.service;
 
 import br.com.carolina.venturahr_usuario.model.domain.Usuario;
-import br.com.carolina.venturahr_usuario.model.exception.EmailDuplicadoException;
+import br.com.carolina.venturahr_usuario.model.exception.CampoDuplicadoException;
 import br.com.carolina.venturahr_usuario.model.infra.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class UsuarioService {
 
     private void verificaDuplicidadeEmail(String email) {
         if (usuarioRepository.existsByEmail(email)) {
-            throw new EmailDuplicadoException("O email " + email + " já está cadastrado na nossa base!");
+            throw new CampoDuplicadoException("O email " + email + " já está cadastrado na nossa base!");
         }
     }
 }

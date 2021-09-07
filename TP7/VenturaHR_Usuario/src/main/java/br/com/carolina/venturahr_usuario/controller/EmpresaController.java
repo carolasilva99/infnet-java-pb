@@ -1,9 +1,9 @@
 package br.com.carolina.venturahr_usuario.controller;
 
-import br.com.carolina.venturahr_usuario.model.domain.Administrador;
+import br.com.carolina.venturahr_usuario.model.domain.Empresa;
 import br.com.carolina.venturahr_usuario.model.exception.CampoDuplicadoException;
 import br.com.carolina.venturahr_usuario.model.exception.UsuarioNaoEncontradoException;
-import br.com.carolina.venturahr_usuario.model.service.AdministradorService;
+import br.com.carolina.venturahr_usuario.model.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,17 +12,17 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/administradores")
-public class AdministradorController {
+@RequestMapping("/api/empresas")
+public class EmpresaController {
     @Autowired
-    private AdministradorService administradorService;
+    private EmpresaService empresaService;
 
     @PostMapping
-    public Administrador incluir(@Valid @RequestBody Administrador administrador) {
+    public Empresa incluir(@Valid @RequestBody Empresa empresa) {
         try {
-            return administradorService.incluir(administrador);
+            return empresaService.incluir(empresa);
         }
-        catch (CampoDuplicadoException ex) {
+        catch(CampoDuplicadoException ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
         }
         catch(Exception ex) {
@@ -31,9 +31,9 @@ public class AdministradorController {
     }
 
     @GetMapping
-    public Iterable<Administrador> listar() {
+    public Iterable<Empresa> listar() {
         try {
-            return administradorService.listar();
+            return empresaService.listar();
         }
         catch(Exception ex) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
@@ -41,9 +41,9 @@ public class AdministradorController {
     }
 
     @GetMapping("/{id}")
-    public Administrador buscarPorId(@PathVariable int id) {
+    public Empresa buscarPorId(@PathVariable int id) {
         try {
-            return administradorService.buscarPorId(id);
+            return empresaService.buscarPorId(id);
         }
         catch(UsuarioNaoEncontradoException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
@@ -53,10 +53,10 @@ public class AdministradorController {
         }
     }
 
-    @GetMapping("/email/{email}")
-    public Administrador buscarPorEmail(@PathVariable String email) {
+    @GetMapping("/cnpj/{cnpj}")
+    public Empresa buscarPorCnpj(@PathVariable String cnpj) {
         try {
-            return administradorService.buscarPorEmail(email);
+            return empresaService.buscarPorCnpj(cnpj);
         }
         catch(UsuarioNaoEncontradoException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
