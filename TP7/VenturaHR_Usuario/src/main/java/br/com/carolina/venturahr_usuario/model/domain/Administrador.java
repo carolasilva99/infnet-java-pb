@@ -7,7 +7,6 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class Administrador extends Usuario {
     @NotBlank(message = "É obrigatório informar o nome")
-    @Column(nullable = false)
     private String nome;
 
     public String getNome() {
