@@ -39,7 +39,7 @@ public class VagaService {
                 .orElseThrow(() -> new VagaNaoEncontradaException("A vaga com o id " + id + " não foi encontrada"));
     }
 
-    public List<Vaga> listar(String cargo, String descricaoCriterio, Integer empresaId, String status) {
+    public List<Vaga> listar(String cargo, Integer empresaId, String status) {
         ExampleMatcher matcher = ExampleMatcher
                 .matchingAny()
                 .withMatcher("cargo", contains().ignoreCase());
@@ -48,7 +48,6 @@ public class VagaService {
                 .cargo(cargo)
                 .empresa(new Empresa(empresaId))
                 .status(StatusVaga.from(status))
-                .criterios(Collections.singletonList(new Criterio(descricaoCriterio)))
                 .build();
         return vagaRepository.findAll(Example.of(exemplo, matcher));
     }

@@ -41,9 +41,9 @@ public class VagaController {
     }
 
     @GetMapping
-    public List<Vaga> listar(String cargo, String descricaoCriterio, Integer empresaId, String status) {
+    public List<Vaga> listar(String cargo, Integer empresaId, String status) {
         try {
-            return vagaService.listar(cargo, descricaoCriterio, empresaId, status);
+            return vagaService.listar(cargo, empresaId, status);
         }
         catch(Exception ex) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
