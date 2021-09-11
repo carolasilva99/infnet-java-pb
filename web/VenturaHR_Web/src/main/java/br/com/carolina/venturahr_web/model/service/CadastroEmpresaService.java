@@ -1,6 +1,5 @@
 package br.com.carolina.venturahr_web.model.service;
 
-import br.com.carolina.venturahr_web.model.domain.Candidato;
 import br.com.carolina.venturahr_web.model.domain.Empresa;
 import br.com.carolina.venturahr_web.model.error.CadastroCandidatoException;
 import jakarta.ws.rs.client.Client;

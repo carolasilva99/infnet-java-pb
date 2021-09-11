@@ -35,8 +35,23 @@ public class LoginServlet extends HttpServlet {
             Usuario usuarioLogado = loginService.login(autenticar);
 
             req.setAttribute("tipo", usuarioLogado.getTipo());
+            RequestDispatcher requestDispatcher;
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/cadastro-empresa.jsp");
+            switch(usuarioLogado.getTipo()) {
+                case ADMIN:
+                     requestDispatcher = req.getRequestDispatcher("admins/consulta-vagas.jsp");
+                     break;
+                case CANDIDATO:
+                    requestDispatcher = req.getRequestDispatcher("candidatos/consulta-vagas.jsp");
+                    break;
+                case EMPRESA:
+                    requestDispatcher = req.getRequestDispatcher("empresas/consulta-vagas.jsp");
+                    break;
+                default:
+                    requestDispatcher = req.getRequestDispatcher("/");
+                    break;
+            }
+
             requestDispatcher.forward(req, resp);
         }
         catch(ErroNaAutenticacaoException ex) {

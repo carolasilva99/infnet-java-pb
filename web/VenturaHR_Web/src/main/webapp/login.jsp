@@ -61,10 +61,10 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="${pageContext.request.contextPath}/cadastro-candidato.jsp">É um candidato e não tem uma conta? Cadastre-se!</a>
+                            <a class="small" href="${pageContext.request.contextPath}/candidatos/cadastro-candidato.jsp">É um candidato e não tem uma conta? Cadastre-se!</a>
                         </div>
                         <div class="text-center">
-                            <a class="small" href="${pageContext.request.contextPath}/cadastro-empresa.jsp">É uma empresa e não tem conta? Cadastre-se!</a>
+                            <a class="small" href="${pageContext.request.contextPath}/empresas/cadastro-empresa.jsp">É uma empresa e não tem conta? Cadastre-se!</a>
                         </div>
                     </div>
                 </div>
