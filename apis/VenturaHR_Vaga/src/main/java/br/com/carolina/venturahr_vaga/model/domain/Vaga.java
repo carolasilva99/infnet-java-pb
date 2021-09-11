@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
@@ -30,6 +31,7 @@ public class Vaga {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusVaga status;
+    private LocalDateTime dataInicio;
 
     public int getId() {
         return id;
@@ -69,5 +71,13 @@ public class Vaga {
 
     public void setStatus(StatusVaga status) {
         this.status = status;
+    }
+
+    public LocalDateTime getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(LocalDateTime dataInicio) {
+        this.dataInicio = dataInicio;
     }
 }
