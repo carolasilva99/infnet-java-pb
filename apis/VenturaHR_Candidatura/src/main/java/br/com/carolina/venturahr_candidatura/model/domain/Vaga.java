@@ -1,28 +1,19 @@
-package br.com.carolina.venturahr_vaga.model.domain;
+package br.com.carolina.venturahr_candidatura.model.domain;
 
-import br.com.carolina.venturahr_vaga.model.domain.enums.StatusVaga;
+import br.com.carolina.venturahr_candidatura.model.domain.enums.StatusVaga;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Builder
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class Vaga {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @OneToOne
     private Empresa empresa;
     @NotEmpty
-    @Column(nullable = false)
     private String cargo;
     @OneToMany(mappedBy = "vaga")
     @NotEmpty
@@ -32,9 +23,12 @@ public class Vaga {
     @Enumerated(EnumType.STRING)
     private StatusVaga status;
     private LocalDateTime dataInicio;
-    private float pmd;
 
-    public Vaga(int idVaga) {
+    public Vaga() {
+    }
+
+    public Vaga(int id) {
+        setId(id);
     }
 
     public int getId() {
@@ -83,13 +77,5 @@ public class Vaga {
 
     public void setDataInicio(LocalDateTime dataInicio) {
         this.dataInicio = dataInicio;
-    }
-
-    public float getPmd() {
-        return pmd;
-    }
-
-    public void setPmd(float pmd) {
-        this.pmd = pmd;
     }
 }

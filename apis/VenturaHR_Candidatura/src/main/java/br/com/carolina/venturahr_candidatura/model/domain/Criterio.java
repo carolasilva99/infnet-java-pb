@@ -1,6 +1,6 @@
-package br.com.carolina.venturahr_vaga.model.domain;
+package br.com.carolina.venturahr_candidatura.model.domain;
 
-import br.com.carolina.venturahr_vaga.model.domain.enums.PMD;
+import br.com.carolina.venturahr_candidatura.model.domain.enums.PMD;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
@@ -8,17 +8,16 @@ import javax.persistence.*;
 @Entity
 public class Criterio {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private String descricao;
     @Enumerated(EnumType.STRING)
     private PMD pmd;
-    private int peso;
     @ManyToOne
     @JoinColumn(name="vaga_id")
     @JsonBackReference
     private Vaga vaga;
+    private int peso;
 
     public Criterio(String descricaoCriterio) {
         setDescricao(descricaoCriterio);

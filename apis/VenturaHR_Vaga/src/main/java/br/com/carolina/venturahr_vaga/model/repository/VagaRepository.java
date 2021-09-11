@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface VagaRepository extends JpaRepository<Vaga, Integer> {
     List<Vaga> findAllByDataInicioBefore(LocalDateTime tempoLimiteParaExpiracao);
+
+    List<Vaga> findAllByDataInicioBeforeAndStatus(LocalDateTime tempoLimiteParaExpiracao, StatusVaga statusVaga);
 }

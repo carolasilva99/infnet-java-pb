@@ -31,12 +31,26 @@ public class VagaService {
 
     public Vaga incluir(Vaga vaga) {
         vaga.setDataInicio(LocalDateTime.now());
+        vaga.setPmd(calcularPmd(vaga));
+        vaga.setStatus(StatusVaga.ABERTA);
         Vaga vagaSalva = vagaRepository.save(vaga);
         for (Criterio criterio : vaga.getCriterios()) {
             criterio.setVaga(vagaSalva);
         }
         criterioService.incluirVarios(vaga.getCriterios());
         return vagaSalva;
+    }
+
+    private float calcularPmd(Vaga vaga) {
+        float somaPesos = 0;
+        float numerador = 0;
+
+        for (Criterio criterio : vaga.getCriterios()) {
+            somaPesos += criterio.getPeso();
+            numerador += criterio.getPmd().getValor() *  criterio.getPeso();
+        }
+
+        return (numerador / somaPesos);
     }
 
     public Vaga buscarPorId(int id) {
@@ -76,10 +90,14 @@ public class VagaService {
 
     public List<Vaga> buscarVagasExpiradas() {
         LocalDateTime tempoLimiteParaExpiracao = LocalDateTime.now().minusDays(TEMPO_EXPIRACAO_EM_DIAS);
-        return vagaRepository.findAllByDataInicioBefore(tempoLimiteParaExpiracao);
+        return vagaRepository.findAllByDataInicioBeforeAndStatus(tempoLimiteParaExpiracao, StatusVaga.ABERTA);
     }
 
     public void salvarTodas(List<Vaga> vagas) {
         vagaRepository.saveAll(vagas);
+    }
+
+    public void salvar(Vaga vaga) {
+        vagaRepository.save(vaga);
     }
 }

@@ -1,4 +1,4 @@
-package br.com.carolina.venturahr_vaga.model.domain.enums;
+package br.com.carolina.venturahr_candidatura.model.domain.enums;
 
 public enum PMD {
     DESEJAVEL(1, "desejável"),
@@ -13,10 +13,6 @@ public enum PMD {
     PMD(int valor, String descricao) {
         this.valor = valor;
         this.descricao = descricao;
-    }
-
-    public int getValor() {
-        return valor;
     }
 
     public String getDescricao() {
