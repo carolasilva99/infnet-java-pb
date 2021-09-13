@@ -5,6 +5,8 @@ import br.com.carolina.venturahr_web.model.domain.Erro;
 import br.com.carolina.venturahr_web.model.domain.ErroValidacao;
 import br.com.carolina.venturahr_web.model.domain.Usuario;
 import br.com.carolina.venturahr_web.model.error.CadastroCandidatoException;
+import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
+import br.com.carolina.venturahr_web.model.error.MensagemErro;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -22,17 +24,8 @@ public class CadastroCandidatoService {
                     .post(Entity.entity(candidato, MediaType.APPLICATION_JSON));
 
             if (response.getStatus() != 200) {
-                Erro erro = response.readEntity(Erro.class);
-                StringBuilder mensagem = new StringBuilder();
-                if (erro.getErrors() != null && !erro.getErrors().isEmpty()) {
-                    for (ErroValidacao erroValidacao : erro.getErrors()) {
-                        mensagem.append(" | ").append(erroValidacao.getDefaultMessage());
-                    }
-                }
-                else {
-                    mensagem.append(erro.getMessage());
-                }
-                throw new CadastroCandidatoException(mensagem.toString());
+                StringBuilder mensagem = MensagemErro.BuscarMensagemErro(response);
+                throw new ErroNaAutenticacaoException(mensagem.toString());
             }
     }
 }

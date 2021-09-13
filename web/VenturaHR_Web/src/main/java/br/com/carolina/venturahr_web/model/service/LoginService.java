@@ -1,8 +1,12 @@
 package br.com.carolina.venturahr_web.model.service;
 
 
+import br.com.carolina.venturahr_web.model.domain.Erro;
+import br.com.carolina.venturahr_web.model.domain.ErroValidacao;
 import br.com.carolina.venturahr_web.model.domain.Usuario;
+import br.com.carolina.venturahr_web.model.error.CadastroCandidatoException;
 import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
+import br.com.carolina.venturahr_web.model.error.MensagemErro;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -24,6 +28,9 @@ public class LoginService {
                 return response.readEntity(Usuario.class);
             }
 
-            throw new ErroNaAutenticacaoException("teste");
+            else {
+                StringBuilder mensagem = MensagemErro.BuscarMensagemErro(response);
+                throw new ErroNaAutenticacaoException(mensagem.toString());
+            }
     }
 }
