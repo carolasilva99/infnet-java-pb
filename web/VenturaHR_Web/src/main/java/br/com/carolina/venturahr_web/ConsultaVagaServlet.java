@@ -1,10 +1,8 @@
 package br.com.carolina.venturahr_web;
 
-import br.com.carolina.venturahr_web.model.domain.Usuario;
 import br.com.carolina.venturahr_web.model.domain.Vaga;
 import br.com.carolina.venturahr_web.model.domain.enums.StatusVaga;
 import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
-import br.com.carolina.venturahr_web.model.service.LoginService;
 import br.com.carolina.venturahr_web.model.service.VagaService;
 
 import javax.servlet.RequestDispatcher;
@@ -19,12 +17,7 @@ import java.util.List;
 @WebServlet(name = "ConsultaVagaServlet", value = "/consulta-vaga")
 public class ConsultaVagaServlet extends HttpServlet {
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
             String cargo = req.getParameter("cargo");
 
@@ -41,6 +34,11 @@ public class ConsultaVagaServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/");
             requestDispatcher.forward(req, resp);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 
     public void destroy() {

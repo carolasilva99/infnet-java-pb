@@ -31,4 +31,18 @@ public class VagaService {
             throw new ErroNaAutenticacaoException(mensagem.toString());
         }
     }
+
+    public Vaga buscarVaga(int id) {
+        Response response = client
+                .target(URL + "/vagas/" + id)
+                .request().get();
+
+        if (response.getStatus() == 200) {
+            return response.readEntity(Vaga.class);
+        }
+        else {
+            StringBuilder mensagem = MensagemErro.BuscarMensagemErro(response);
+            throw new ErroNaAutenticacaoException(mensagem.toString());
+        }
+    }
 }

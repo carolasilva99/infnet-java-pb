@@ -19,6 +19,7 @@ public class LoginServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
+        request.getSession().invalidate();
     }
 
     @Override
@@ -34,7 +35,9 @@ public class LoginServlet extends HttpServlet {
         try {
             Usuario usuarioLogado = loginService.login(autenticar);
 
+            req.getSession().setAttribute("usuarioId", usuarioLogado.getId());
             req.setAttribute("tipo", usuarioLogado.getTipo());
+
             RequestDispatcher requestDispatcher;
 
             switch(usuarioLogado.getTipo()) {

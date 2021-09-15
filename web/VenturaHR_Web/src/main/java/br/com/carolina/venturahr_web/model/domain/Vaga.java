@@ -20,6 +20,10 @@ public class Vaga {
     private String dataInicio;
     private float pmd;
 
+    public Vaga(int id) {
+        setId(id);
+    }
+
     public int getId() {
         return id;
     }

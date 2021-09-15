@@ -4,6 +4,13 @@ public class Candidato extends Usuario {
     private String cpf;
     private String nome;
 
+    public Candidato() {
+    }
+
+    public Candidato(int id) {
+        setId(id);
+    }
+
     public String getCpf() {
         return cpf;
     }

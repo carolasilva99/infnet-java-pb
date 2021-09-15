@@ -15,6 +15,10 @@ public enum PMDCandidatura {
         this.descricao = descricao;
     }
 
+    public static PMDCandidatura buscarPMD(String descricao) {
+        return PMDCandidatura.valueOf(descricao);
+    }
+
     public int getValor() {
         return valor;
     }

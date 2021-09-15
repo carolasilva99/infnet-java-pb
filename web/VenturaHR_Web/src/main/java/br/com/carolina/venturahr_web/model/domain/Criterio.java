@@ -17,6 +17,10 @@ public class Criterio {
     public Criterio() {
     }
 
+    public Criterio(int id) {
+        setId(id);
+    }
+
     public int getId() {
         return id;
     }

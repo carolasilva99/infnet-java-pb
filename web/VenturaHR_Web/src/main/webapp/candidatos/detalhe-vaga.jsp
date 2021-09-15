@@ -184,50 +184,81 @@
       <!-- End of Topbar -->
 
       <!-- Begin Page Content -->
-      <div class="container align-content-center justify-content-center text-center">
+      <div class="container ml-5">
         <c:if test="${not empty mensagem_erro}">
           <div class="alert alert-danger">
             <strong>Erro!</strong> ${mensagem_erro}
           </div>
         </c:if>
 
-        <c:if test="${not empty mensagem_sucesso}">
-          <div class="alert alert-success">
-              ${mensagem_sucesso}
-          </div>
+        <c:if test="${not empty vaga}">
+          <form  method="post" action="${pageContext.request.contextPath}/detalhe-vaga">
+            <div class="empresa">
+              <h1 class="mt-3">Empresa</h1>
+              <div class="row">
+                <div class="col-sm">
+                  <p><b>Razão Social: </b> ${vaga.empresa.razaoSocial}</p>
+                </div>
+                <div class="col-sm">
+                  <p><b>CNPJ: </b> ${vaga.empresa.cnpj}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <p><b>Telefone: </b> ${vaga.empresa.telefone}</p>
+                </div>
+                <div class="col-sm">
+                  <p><b>E-mail: </b> ${vaga.empresa.email}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <p><b>Enderço: </b> ${vaga.empresa.endereco}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="vaga mt-4">
+              <input type="hidden" id="vaga.id" name="vaga.id" value="${vaga.id}">
+              <h1>Vaga</h1>
+              <p><b>Cargo: </b> ${vaga.cargo}</p>
+              <div class="criterios mt-4">
+                <h3>Critérios</h3>
+                <table class="table mt-4">
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Descrição</th>
+                      <th>Conhecimento</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <c:forEach var="criterio" items="${vaga.criterios}">
+                    <tr>
+                      <td>${criterio.nome}</td>
+                      <td>${criterio.descricao}</td>
+                      <td>
+                        <select class="form-control" name="proficiencias.${criterio.id}.nota" id="nota">
+                          <option value="NENHUM">Nenhum</option>
+                          <option value="POUCO">Pouco</option>
+                          <option value="MEDIO">Médio</option>
+                          <option value="RELEVANTE">Relevante</option>
+                          <option value="TODO">Todo</option>
+                        </select>
+                      </td>
+                    </tr>
+                  </c:forEach>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary">Candidatar</button>
+            </div>
+          </form>
         </c:if>
 
-        <form method="get" action="${pageContext.request.contextPath}/consulta-vaga"  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" >
-          <div class="input-group col-sm-12 mb-3 mb-sm-0">
-            <input type="text" class="form-control bg-light border-0 large" placeholder="Cargo" name="cargo" id="cargo"
-                   aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-primary">
-                <i class="fas fa-search fa-sm"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-        <c:if test="${not empty vagas}">
-          <table class="table mt-4">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Empresa</th>
-                <th>Cargo</th>
-              </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="vaga" items="${vagas}">
-              <tr onclick="window.location='${pageContext.request.contextPath}/detalhe-vaga?id=${vaga.id}'">
-                <td>${vaga.id}</td>
-                <td>${vaga.empresa.razaoSocial}</td>
-                <td>${vaga.cargo}</td>
-              </tr>
-            </c:forEach>
-            </tbody>
-          </table>
-        </c:if>
       </div>
       <!-- /.container-fluid -->
 
