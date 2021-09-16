@@ -18,7 +18,7 @@ import java.util.List;
 public class Vaga {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @OneToOne
     private Empresa empresa;
     @NotEmpty
@@ -32,16 +32,16 @@ public class Vaga {
     @Enumerated(EnumType.STRING)
     private StatusVaga status;
     private LocalDateTime dataInicio;
-    private float pmd;
+    private Float pmd;
 
-    public Vaga(int idVaga) {
+    public Vaga(Integer idVaga) {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -85,11 +85,11 @@ public class Vaga {
         this.dataInicio = dataInicio;
     }
 
-    public float getPmd() {
+    public Float getPmd() {
         return pmd;
     }
 
-    public void setPmd(float pmd) {
+    public void setPmd(Float pmd) {
         this.pmd = pmd;
     }
 }

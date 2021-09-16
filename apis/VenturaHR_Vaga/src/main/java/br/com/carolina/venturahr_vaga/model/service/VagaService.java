@@ -61,12 +61,16 @@ public class VagaService {
 
     public List<Vaga> listar(String cargo, Integer empresaId, String status) {
         ExampleMatcher matcher = ExampleMatcher
-                .matchingAny()
+                .matchingAll()
+                .withIgnoreNullValues()
                 .withMatcher("cargo", contains().ignoreCase());
         Vaga exemplo = Vaga
                 .builder()
+                .id(null)
+                .criterios(null)
+                .dataInicio(null)
+                .pmd(null)
                 .cargo(cargo)
-                .empresa(new Empresa(empresaId))
                 .status(StatusVaga.from(status))
                 .build();
         return vagaRepository.findAll(Example.of(exemplo, matcher));

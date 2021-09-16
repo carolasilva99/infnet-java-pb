@@ -25,4 +25,6 @@ public class CandidaturaService {
             throw new ErroNaAutenticacaoException(mensagem.toString());
         }
     }
+
+
 }
