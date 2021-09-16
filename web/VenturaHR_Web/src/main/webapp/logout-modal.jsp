@@ -16,8 +16,10 @@
             </div>
             <div class="modal-body">Selecione logout para finalizar sua sessão!</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="${pageContext.request.contextPath}/login.jsp">Logout</a>
+                <form method="get" action="${pageContext.request.contextPath}/logout">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary">Logout</button>
+                </form>
             </div>
         </div>
     </div>

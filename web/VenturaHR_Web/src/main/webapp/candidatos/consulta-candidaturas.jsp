@@ -67,8 +67,8 @@
                         <c:forEach var="candidatura" items="${candidaturas}">
                             <tr onclick="window.location='${pageContext.request.contextPath}/detalhe-candidatura?id=${candidatura.id}'">
                                 <td>${candidatura.id}</td>
-                                <td>${candidatura.empresa.razaoSocial}</td>
-                                <td>${candidatura.cargo}</td>
+                                <td>${candidatura.vaga.empresa.razaoSocial}</td>
+                                <td>${candidatura.vaga.cargo}</td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -87,7 +87,7 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <c:import url="/candidatos/logout-modal.jsp"/>
+    <c:import url="/logout-modal.jsp"/>
 
     <!-- Bootstrap core JavaScript-->
     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>

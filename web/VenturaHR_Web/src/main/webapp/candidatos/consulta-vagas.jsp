@@ -98,7 +98,7 @@
 </div>
 <!-- End of Page Wrapper -->
 
-<c:import url="/candidatos/logout-modal.jsp"/>
+<c:import url="/logout-modal.jsp"/>
 
 <!-- Bootstrap core JavaScript-->
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>

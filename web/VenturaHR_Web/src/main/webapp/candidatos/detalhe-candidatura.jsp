@@ -24,7 +24,6 @@
   <link href="${pageContext.request.contextPath}/resources/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
-
 <body id="page-top">
 
 <!-- Page Wrapper -->
@@ -47,37 +46,36 @@
           </div>
         </c:if>
 
-        <c:if test="${not empty vaga}">
-          <form  method="post" action="${pageContext.request.contextPath}/detalhe-vaga">
+        <c:if test="${not empty candidatura}">
             <div class="empresa">
               <h1 class="mt-3">Empresa</h1>
               <div class="row">
                 <div class="col-sm">
-                  <p><b>Razão Social: </b> ${vaga.empresa.razaoSocial}</p>
+                  <p><b>Razão Social: </b> ${candidatura.vaga.empresa.razaoSocial}</p>
                 </div>
                 <div class="col-sm">
-                  <p><b>CNPJ: </b> ${vaga.empresa.cnpj}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm">
-                  <p><b>Telefone: </b> ${vaga.empresa.telefone}</p>
-                </div>
-                <div class="col-sm">
-                  <p><b>E-mail: </b> ${vaga.empresa.email}</p>
+                  <p><b>CNPJ: </b> ${candidatura.vaga.empresa.cnpj}</p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm">
-                  <p><b>Enderço: </b> ${vaga.empresa.endereco}</p>
+                  <p><b>Telefone: </b> ${candidatura.vaga.empresa.telefone}</p>
+                </div>
+                <div class="col-sm">
+                  <p><b>E-mail: </b> ${candidatura.vaga.empresa.email}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <p><b>Enderço: </b> ${candidatura.vaga.empresa.endereco}</p>
                 </div>
               </div>
             </div>
 
             <div class="vaga mt-4">
-              <input type="hidden" id="vaga.id" name="vaga.id" value="${vaga.id}">
+              <input type="hidden" id="vaga.id" name="vaga.id" value="${candidatura.vaga.id}">
               <h1>Vaga</h1>
-              <p><b>Cargo: </b> ${vaga.cargo}</p>
+              <p><b>Cargo: </b> ${candidatura.vaga.cargo}</p>
               <div class="criterios mt-4">
                 <h3>Critérios</h3>
                 <table class="table mt-4">
@@ -89,17 +87,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <c:forEach var="criterio" items="${vaga.criterios}">
+                  <c:forEach var="proficiencia" items="${candidatura.proficiencias}">
                     <tr>
-                      <td>${criterio.nome}</td>
-                      <td>${criterio.descricao}</td>
+                      <td>${proficiencia.criterio.nome}</td>
+                      <td>${proficiencia.criterio.descricao}</td>
                       <td>
-                        <select class="form-control" name="proficiencias.${criterio.id}.nota" id="nota">
-                          <option value="NENHUM">Nenhum</option>
-                          <option value="POUCO">Pouco</option>
-                          <option value="MEDIO">Médio</option>
-                          <option value="RELEVANTE">Relevante</option>
-                          <option value="TODO">Todo</option>
+                        <select disabled class="form-control" id="nota">
+                          <option <c:if test="${proficiencia.nota == 'NENHUM'}">selected</c:if>  value="NENHUM">Nenhum</option>
+                          <option <c:if test="${proficiencia.nota == 'POUCO'}">selected</c:if> value="POUCO">Pouco</option>
+                          <option <c:if test="${proficiencia.nota == 'MEDIO'}">selected</c:if> value="MEDIO">Médio</option>
+                          <option <c:if test="${proficiencia.nota == 'RELEVANTE'}">selected</c:if> value="RELEVANTE">Relevante</option>
+                          <option <c:if test="${proficiencia.nota == 'TODO'}">selected</c:if> value="TODO">Todo</option>
                         </select>
                       </td>
                     </tr>
@@ -108,11 +106,6 @@
                 </table>
               </div>
             </div>
-
-            <div class="text-right">
-              <button type="submit" class="btn btn-primary">Candidatar</button>
-            </div>
-          </form>
         </c:if>
 
       </div>

@@ -1,6 +1,7 @@
 package br.com.carolina.venturahr_candidatura.controller;
 
 import br.com.carolina.venturahr_candidatura.model.domain.Candidatura;
+import br.com.carolina.venturahr_candidatura.model.exception.CandidaturaNaoEncontradaException;
 import br.com.carolina.venturahr_candidatura.model.exception.CriterioNaoEncontradoException;
 import br.com.carolina.venturahr_candidatura.model.service.CandidaturaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,19 @@ public class CandidaturaController {
     public List<Candidatura> buscarPorVaga(@PathVariable int idVaga) {
         try {
             return candidaturaService.buscarPorVaga(idVaga);
+        }
+        catch(Exception ex) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}")
+    public Candidatura buscarPorId(@PathVariable int id) {
+        try {
+            return candidaturaService.buscarPorId(id);
+        }
+        catch(CandidaturaNaoEncontradaException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
         catch(Exception ex) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());

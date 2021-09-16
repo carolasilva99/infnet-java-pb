@@ -4,6 +4,7 @@ import br.com.carolina.venturahr_web.model.domain.*;
 import br.com.carolina.venturahr_web.model.domain.enums.PMDCandidatura;
 import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
 import br.com.carolina.venturahr_web.model.service.CandidaturaService;
+import br.com.carolina.venturahr_web.model.service.GerenciadorSessaoService;
 import br.com.carolina.venturahr_web.model.service.VagaService;
 
 import javax.servlet.RequestDispatcher;
@@ -22,6 +23,7 @@ public class DetalheVagaServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
+            GerenciadorSessaoService.usuarioLogado(req, resp);
             VagaService vagaService = new VagaService();
             String id = req.getParameter("id");
 
@@ -40,10 +42,10 @@ public class DetalheVagaServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int usuarioId = GerenciadorSessaoService.usuarioLogado(req, resp);
         CandidaturaService candidaturaService = new CandidaturaService();
 
         try {
-            int usuarioId = (int) req.getSession().getAttribute("usuarioId");
             Candidatura candidatura = criaCandidaturaAPartirDosParametrosEnviados(usuarioId, req.getParameterMap());
 
             candidaturaService.Candidatar(candidatura);
@@ -86,6 +88,4 @@ public class DetalheVagaServlet extends HttpServlet {
         return candidatura;
     }
 
-    public void destroy() {
-    }
 }

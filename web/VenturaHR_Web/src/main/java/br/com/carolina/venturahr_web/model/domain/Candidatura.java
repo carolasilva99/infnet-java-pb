@@ -6,7 +6,7 @@ import java.util.List;
 public class Candidatura {
     private int id;
     private Candidato candidato;
-    private LocalDateTime data;
+    private String data;
     private Vaga vaga;
     private List<Proficiencia> proficiencias;
     private String observacao;
@@ -28,11 +28,11 @@ public class Candidatura {
         this.candidato = candidato;
     }
 
-    public LocalDateTime getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(LocalDateTime data) {
+    public void setData(String data) {
         this.data = data;
     }
 

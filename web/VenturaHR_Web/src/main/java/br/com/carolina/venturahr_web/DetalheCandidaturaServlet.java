@@ -1,8 +1,9 @@
 package br.com.carolina.venturahr_web;
 
-import br.com.carolina.venturahr_web.model.domain.Vaga;
-import br.com.carolina.venturahr_web.model.domain.enums.StatusVaga;
+import br.com.carolina.venturahr_web.model.domain.*;
+import br.com.carolina.venturahr_web.model.domain.enums.PMDCandidatura;
 import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
+import br.com.carolina.venturahr_web.model.service.CandidaturaService;
 import br.com.carolina.venturahr_web.model.service.GerenciadorSessaoService;
 import br.com.carolina.venturahr_web.model.service.VagaService;
 
@@ -13,22 +14,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-@WebServlet(name = "ConsultaVagaServlet", value = "/consulta-vaga")
-public class ConsultaVagaServlet extends HttpServlet {
+@WebServlet(name = "DetalheCandidaturaServlet", value = "/detalhe-candidatura")
+public class DetalheCandidaturaServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
             GerenciadorSessaoService.usuarioLogado(req, resp);
-            String cargo = req.getParameter("cargo");
+            CandidaturaService candidaturaService = new CandidaturaService();
+            String id = req.getParameter("id");
+            Candidatura candidatura = candidaturaService.buscarCandidatura(Integer.parseInt(id));
+            req.setAttribute("candidatura", candidatura);
 
-            VagaService vagaService = new VagaService();
-
-            List<Vaga> vagas = vagaService.buscarVagas(cargo, null, StatusVaga.ABERTA.getDescricao());
-            req.setAttribute("vagas", vagas);
-
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("candidatos/consulta-vagas.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("candidatos/detalhe-candidatura.jsp");
             requestDispatcher.forward(req, resp);
         }
         catch (ErroNaAutenticacaoException exception) {
@@ -37,4 +38,6 @@ public class ConsultaVagaServlet extends HttpServlet {
             requestDispatcher.forward(req, resp);
         }
     }
+
+
 }

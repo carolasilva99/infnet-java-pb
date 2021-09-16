@@ -1,6 +1,7 @@
 package br.com.carolina.venturahr_candidatura.model.service;
 
 import br.com.carolina.venturahr_candidatura.model.domain.*;
+import br.com.carolina.venturahr_candidatura.model.exception.CandidaturaNaoEncontradaException;
 import br.com.carolina.venturahr_candidatura.model.repository.CandidaturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,5 +56,11 @@ public class CandidaturaService {
 
     public List<Candidatura> buscarPorVaga(int idVaga) {
         return candidaturaRepository.findAllByVaga(new Vaga(idVaga));
+    }
+
+    public Candidatura buscarPorId(int id) {
+        return candidaturaRepository
+                .findById(id)
+                .orElseThrow(() -> new CandidaturaNaoEncontradaException("A candidatura de id " + id + " não foi encontrada!"));
     }
 }
