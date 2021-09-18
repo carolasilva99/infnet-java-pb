@@ -2,6 +2,7 @@ package br.com.carolina.venturahr_web.empresas;
 
 import br.com.carolina.venturahr_web.model.domain.Vaga;
 import br.com.carolina.venturahr_web.model.domain.enums.StatusVaga;
+import br.com.carolina.venturahr_web.model.domain.enums.TipoUsuario;
 import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
 import br.com.carolina.venturahr_web.model.service.GerenciadorSessaoService;
 import br.com.carolina.venturahr_web.model.service.VagaService;
@@ -20,7 +21,7 @@ public class ConsultaVagaEmpresaServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
-            int idEmpresa = GerenciadorSessaoService.usuarioLogado(req, resp);
+            int idEmpresa = GerenciadorSessaoService.usuarioLogado(req, resp, TipoUsuario.EMPRESA);
             String status = req.getParameter("status");
             String cargo = req.getParameter("cargo");
 

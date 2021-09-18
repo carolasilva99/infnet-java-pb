@@ -24,13 +24,13 @@
 </head>
 
 <body class="bg-gradient-primary">
-
+<c:if test="${not empty mensagem_erro}">
+    <div class="alert alert-danger">
+        <strong>Erro!</strong> ${mensagem_erro}
+    </div>
+</c:if>
 <div class="container">
-    <c:if test="${not empty mensagem_erro}">
-        <div class="alert alert-danger">
-            <strong>Erro!</strong> ${mensagem_erro}
-        </div>
-    </c:if>
+
     <div class="card o-hidden border-0 shadow-lg my-5">
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->

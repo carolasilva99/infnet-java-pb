@@ -2,6 +2,7 @@ package br.com.carolina.venturahr_web.empresas;
 
 import br.com.carolina.venturahr_web.model.domain.*;
 import br.com.carolina.venturahr_web.model.domain.enums.PMDCandidatura;
+import br.com.carolina.venturahr_web.model.domain.enums.TipoUsuario;
 import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
 import br.com.carolina.venturahr_web.model.service.CandidaturaService;
 import br.com.carolina.venturahr_web.model.service.GerenciadorSessaoService;
@@ -23,7 +24,7 @@ public class DetalheVagaEmpresaServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
-            GerenciadorSessaoService.usuarioLogado(req, resp);
+            GerenciadorSessaoService.usuarioLogado(req, resp, TipoUsuario.EMPRESA);
             VagaService vagaService = new VagaService();
             String id = req.getParameter("id");
 
@@ -42,7 +43,7 @@ public class DetalheVagaEmpresaServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int usuarioId = GerenciadorSessaoService.usuarioLogado(req, resp);
+        int usuarioId = GerenciadorSessaoService.usuarioLogado(req, resp, TipoUsuario.EMPRESA);
         CandidaturaService candidaturaService = new CandidaturaService();
 
         try {

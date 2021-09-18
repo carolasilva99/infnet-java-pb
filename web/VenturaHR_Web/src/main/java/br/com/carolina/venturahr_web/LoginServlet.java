@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
             Usuario usuarioLogado = loginService.login(autenticar);
 
             req.getSession().setAttribute("usuarioId", usuarioLogado.getId());
-            req.setAttribute("tipo", usuarioLogado.getTipo());
+            req.getSession().setAttribute("tipo", usuarioLogado.getTipo());
 
             RequestDispatcher requestDispatcher;
 

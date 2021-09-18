@@ -3,6 +3,7 @@ package br.com.carolina.venturahr_web.empresas;
 import br.com.carolina.venturahr_web.model.domain.*;
 import br.com.carolina.venturahr_web.model.domain.enums.PMD;
 import br.com.carolina.venturahr_web.model.domain.enums.PMDCandidatura;
+import br.com.carolina.venturahr_web.model.domain.enums.TipoUsuario;
 import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
 import br.com.carolina.venturahr_web.model.service.CandidaturaService;
 import br.com.carolina.venturahr_web.model.service.GerenciadorSessaoService;
@@ -29,7 +30,7 @@ public class CadastroVagaServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int empresaId = GerenciadorSessaoService.usuarioLogado(req, resp);
+        int empresaId = GerenciadorSessaoService.usuarioLogado(req, resp, TipoUsuario.EMPRESA);
         VagaService vagaService = new VagaService();
 
         try {
