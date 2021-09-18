@@ -4,6 +4,13 @@ public class Empresa extends Usuario {
     private String cnpj;
     private String razaoSocial;
 
+    public Empresa() {
+    }
+
+    public Empresa(int empresaId) {
+        setId(empresaId);
+    }
+
     public String getCnpj() {
         return cnpj;
     }

@@ -1,4 +1,4 @@
-package br.com.carolina.venturahr_web;
+package br.com.carolina.venturahr_web.candidatos;
 
 import br.com.carolina.venturahr_web.model.domain.*;
 import br.com.carolina.venturahr_web.model.domain.enums.PMDCandidatura;

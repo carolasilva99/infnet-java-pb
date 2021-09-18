@@ -30,7 +30,7 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-  <c:import url="/candidatos/sidebar.jsp"/>
+  <c:import url="/empresas/sidebar.jsp"/>
 
   <!-- Content Wrapper -->
   <div id="content-wrapper" class="d-flex flex-column">
@@ -54,8 +54,16 @@
           </div>
         </c:if>
 
-        <form method="get" action="${pageContext.request.contextPath}/consulta-vaga"  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" >
+        <form method="get" action="${pageContext.request.contextPath}/consulta-vaga-empresa"  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" >
           <div class="input-group col-sm-12 mb-3 mb-sm-0">
+            <label class="mr-2" for="status">Status: </label>
+            <select class="form-control mr-3 ml-3 bg-light border-0 large" name="status" id="status">
+              <option value="">-</option>
+              <option value="ABERTA">Aberta</option>
+              <option value="EXPIRADA">Expirada</option>
+              <option value="RENOVADA">Renovada</option>
+              <option value="FINALIZADA">Finalizada</option>
+            </select>
             <input type="text" class="form-control bg-light border-0 large" placeholder="Cargo" name="cargo" id="cargo"
                    aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
@@ -70,16 +78,16 @@
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Empresa</th>
                 <th>Cargo</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
             <c:forEach var="vaga" items="${vagas}">
               <tr onclick="window.location='${pageContext.request.contextPath}/detalhe-vaga?id=${vaga.id}'">
                 <td>${vaga.id}</td>
-                <td>${vaga.empresa.razaoSocial}</td>
                 <td>${vaga.cargo}</td>
+                <td>${vaga.status}</td>
               </tr>
             </c:forEach>
             </tbody>

@@ -1,17 +1,13 @@
-package br.com.carolina.venturahr_web;
+package br.com.carolina.venturahr_web.empresas;
 
-import br.com.carolina.venturahr_web.model.domain.Candidatura;
 import br.com.carolina.venturahr_web.model.domain.Vaga;
 import br.com.carolina.venturahr_web.model.domain.enums.StatusVaga;
 import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
-import br.com.carolina.venturahr_web.model.service.CandidaturaService;
 import br.com.carolina.venturahr_web.model.service.GerenciadorSessaoService;
 import br.com.carolina.venturahr_web.model.service.VagaService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,18 +15,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ConsultaCandidaturaServlet", value = "/consulta-candidatura")
-public class ConsultaCandidaturaServlet extends HttpServlet {
+@WebServlet(name = "ConsultaVagaEmpresaServlet", value = "/consulta-vaga-empresa")
+public class ConsultaVagaEmpresaServlet extends HttpServlet {
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
-            int usuarioId = GerenciadorSessaoService.usuarioLogado(req, resp);
+            int idEmpresa = GerenciadorSessaoService.usuarioLogado(req, resp);
+            String status = req.getParameter("status");
+            String cargo = req.getParameter("cargo");
 
-            CandidaturaService candidaturaService = new CandidaturaService();
+            VagaService vagaService = new VagaService();
 
-            List<Candidatura> candidaturas = candidaturaService.buscarCandidaturas(usuarioId);
-            req.setAttribute("candidaturas", candidaturas);
+            List<Vaga> vagas = vagaService.buscarVagas(cargo, idEmpresa, status);
+            req.setAttribute("vagas", vagas);
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("candidatos/consulta-candidaturas.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("empresas/consulta-vagas.jsp");
             requestDispatcher.forward(req, resp);
         }
         catch (ErroNaAutenticacaoException exception) {

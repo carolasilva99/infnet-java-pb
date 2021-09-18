@@ -38,7 +38,7 @@
         <!-- Main Content -->
         <div id="content">
 
-            <c:import url="/candidatos/topbar.jsp"/>
+            <c:import url="/topbar.jsp"/>
 
             <!-- Begin Page Content -->
             <div class="container align-content-center justify-content-center text-center">
