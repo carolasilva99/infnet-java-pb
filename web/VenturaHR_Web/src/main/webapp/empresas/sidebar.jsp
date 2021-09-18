@@ -32,7 +32,7 @@
 
     <li class="nav-item">
         <a  class="nav-link" href="${pageContext.request.contextPath}/empresas/cadastro-vaga.jsp">
-            <i class="fas fa-fw fa-search"></i>
+            <i class="fas fa-fw fa-plus"></i>
             <span>Cadastrar Vaga</span>
         </a>
     </li>
