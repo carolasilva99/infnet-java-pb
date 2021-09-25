@@ -1,9 +1,7 @@
 package br.com.carolina.venturahr_web;
 
-import br.com.carolina.venturahr_web.model.domain.Candidato;
 import br.com.carolina.venturahr_web.model.domain.Empresa;
-import br.com.carolina.venturahr_web.model.error.CadastroCandidatoException;
-import br.com.carolina.venturahr_web.model.service.CadastroCandidatoService;
+import br.com.carolina.venturahr_web.model.error.ErroApiException;
 import br.com.carolina.venturahr_web.model.service.CadastroEmpresaService;
 
 import javax.servlet.RequestDispatcher;
@@ -28,7 +26,7 @@ public class CadastroEmpresaServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
             requestDispatcher.forward(req, resp);
         }
-        catch(CadastroCandidatoException ex) {
+        catch(ErroApiException ex) {
             req.setAttribute("mensagem_erro", ex.getMessage());
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/");
             requestDispatcher.forward(req, resp);

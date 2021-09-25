@@ -29,4 +29,17 @@ public class RankingController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
         }
     }
+
+    @GetMapping("/vagas/{idVaga}")
+    public Ranking buscarPorVaga(@PathVariable int idVaga) {
+        try {
+            return rankingService.buscarRankingPorVaga(idVaga);
+        }
+        catch(RankingNaoEncontradoException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
+        catch(Exception ex) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        }
+    }
 }

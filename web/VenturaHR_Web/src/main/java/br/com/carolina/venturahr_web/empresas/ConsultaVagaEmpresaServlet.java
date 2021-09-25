@@ -1,9 +1,8 @@
 package br.com.carolina.venturahr_web.empresas;
 
 import br.com.carolina.venturahr_web.model.domain.Vaga;
-import br.com.carolina.venturahr_web.model.domain.enums.StatusVaga;
 import br.com.carolina.venturahr_web.model.domain.enums.TipoUsuario;
-import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
+import br.com.carolina.venturahr_web.model.error.ErroApiException;
 import br.com.carolina.venturahr_web.model.service.GerenciadorSessaoService;
 import br.com.carolina.venturahr_web.model.service.VagaService;
 
@@ -33,7 +32,7 @@ public class ConsultaVagaEmpresaServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("empresas/consulta-vagas.jsp");
             requestDispatcher.forward(req, resp);
         }
-        catch (ErroNaAutenticacaoException exception) {
+        catch (ErroApiException exception) {
             req.setAttribute("mensagem_erro", exception.getMessage());
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/");
             requestDispatcher.forward(req, resp);

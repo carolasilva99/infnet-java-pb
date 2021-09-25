@@ -22,7 +22,7 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <form method="get" action="${pageContext.request.contextPath}/empresas/consulta-vaga">
+        <form method="get" action="${pageContext.request.contextPath}/empresas/consulta-vagas.jsp">
             <a onclick="parentNode.submit()" class="nav-link">
                 <i class="fas fa-fw fa-search"></i>
                 <span>Minhas Vagas</span>

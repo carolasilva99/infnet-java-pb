@@ -1,9 +1,8 @@
 package br.com.carolina.venturahr_web.model.service;
 
 
-import br.com.carolina.venturahr_web.model.domain.Candidato;
 import br.com.carolina.venturahr_web.model.domain.Vaga;
-import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
+import br.com.carolina.venturahr_web.model.error.ErroApiException;
 import br.com.carolina.venturahr_web.model.error.MensagemErro;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -31,7 +30,7 @@ public class VagaService {
         }
         else {
             StringBuilder mensagem = MensagemErro.BuscarMensagemErro(response);
-            throw new ErroNaAutenticacaoException(mensagem.toString());
+            throw new ErroApiException(mensagem.toString());
         }
     }
 
@@ -45,7 +44,7 @@ public class VagaService {
         }
         else {
             StringBuilder mensagem = MensagemErro.BuscarMensagemErro(response);
-            throw new ErroNaAutenticacaoException(mensagem.toString());
+            throw new ErroApiException(mensagem.toString());
         }
     }
 
@@ -57,7 +56,7 @@ public class VagaService {
 
         if (response.getStatus() != 200) {
             StringBuilder mensagem = MensagemErro.BuscarMensagemErro(response);
-            throw new ErroNaAutenticacaoException(mensagem.toString());
+            throw new ErroApiException(mensagem.toString());
         }
     }
 }

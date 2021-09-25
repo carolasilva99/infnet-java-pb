@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Criterio {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private String descricao;

@@ -34,4 +34,17 @@ public class RankingService {
 
        return ranking;
    }
+
+    public Ranking buscarRankingPorVaga(int idVaga) {
+        Optional<Ranking> optionalRanking = rankingRepository.findByVagaId(idVaga);
+
+        if (optionalRanking.isEmpty()) {
+            throw new RankingNaoEncontradoException("O ranking da vaga com id " + idVaga + "não foi encontrado!");
+        }
+
+        Ranking ranking = optionalRanking.get();
+        ranking.getCandidaturas().sort(new SortByPmd());
+
+        return ranking;
+    }
 }

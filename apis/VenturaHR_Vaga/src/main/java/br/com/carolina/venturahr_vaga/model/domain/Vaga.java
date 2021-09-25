@@ -16,6 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Vaga {
+    public static final long TEMPO_EXPIRACAO_EM_DIAS = 1;
+    public static final long TEMPO_FINALIZACAO_EM_DIAS = 1;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

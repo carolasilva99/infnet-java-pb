@@ -87,6 +87,57 @@
               </div>
             </div>
         </c:if>
+
+        <c:if test="${not empty ranking}">
+          <h1>Ranking</h1>
+          <c:forEach var="candidatura" items="${ranking.candidaturas}">
+            <div class="vaga mt-4">
+              <div class="candidato">
+                <h3 class="mt-3">Candidato</h3>
+                <p><b>Nome: </b> ${candidatura.candidato.nome}</p>
+                <p><b>CPF: </b> ${candidatura.candidato.cpf}</p>
+                <p><b>E-mail: </b> ${candidatura.candidato.email}</p>
+                <p><b>Endereço: </b> ${candidatura.candidato.endereco}</p>
+                <p><b>Telefone: </b> ${candidatura.candidato.telefone}</p>
+              </div>
+              <div class="proficiencias">
+                <div class="proficiencias mt-4">
+                  <h3>Critérios</h3>
+                  <table class="table mt-4">
+                    <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Descrição</th>
+                      <th>Conhecimento</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="proficiencia" items="${candidatura.proficiencias}">
+                      <tr>
+                        <td>${proficiencia.criterio.nome}</td>
+                        <td>${proficiencia.criterio.descricao}</td>
+                        <td>
+                          <select disabled class="form-control" id="nota">
+                            <option <c:if test="${proficiencia.nota == 'NENHUM'}">selected</c:if>  value="NENHUM">Nenhum</option>
+                            <option <c:if test="${proficiencia.nota == 'POUCO'}">selected</c:if> value="POUCO">Pouco</option>
+                            <option <c:if test="${proficiencia.nota == 'MEDIO'}">selected</c:if> value="MEDIO">Médio</option>
+                            <option <c:if test="${proficiencia.nota == 'RELEVANTE'}">selected</c:if> value="RELEVANTE">Relevante</option>
+                            <option <c:if test="${proficiencia.nota == 'TODO'}">selected</c:if> value="TODO">Todo</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </c:forEach>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="nota">
+                <p><b>Nota obtida: </b> ${candidatura.nota}</p>
+              </div>
+              <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1);"/>
+          </div>
+          </c:forEach>
+        </c:if>
       </div>
       <!-- /.container-fluid -->
 

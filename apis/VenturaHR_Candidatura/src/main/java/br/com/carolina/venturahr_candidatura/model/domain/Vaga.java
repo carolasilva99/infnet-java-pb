@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 public class Vaga {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @OneToOne
     private Empresa empresa;

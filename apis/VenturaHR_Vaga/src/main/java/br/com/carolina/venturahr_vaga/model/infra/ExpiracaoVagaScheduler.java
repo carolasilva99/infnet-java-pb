@@ -29,7 +29,7 @@ public class ExpiracaoVagaScheduler {
     @Scheduled(fixedDelay = 3600)
     public void expirarVagas() {
         try {
-            List<Vaga> vagasExpiradas = vagaService.buscarVagasExpiradas();
+            List<Vaga> vagasExpiradas = vagaService.buscarVagasParaExpiracao();
             for(Vaga vaga : vagasExpiradas) {
                 vaga = vagaService.buscarPorId(vaga.getId());
                 vaga.setStatus(StatusVaga.EXPIRADA);
@@ -50,5 +50,20 @@ public class ExpiracaoVagaScheduler {
 
         Ranking salvo = rankingService.inserirRanking(ranking);
         System.out.println("O ranking " + salvo.getId() + " foi salvo! Consulte utilizando o id!");
+    }
+
+    @Scheduled(fixedDelay = 3600)
+    public void finalizarVagas() {
+        try {
+            List<Vaga> vagasExpiradas = vagaService.buscarVagasParaFinalizacao();
+            for(Vaga vaga : vagasExpiradas) {
+                vaga = vagaService.buscarPorId(vaga.getId());
+                vaga.setStatus(StatusVaga.FINALIZADA);
+                vagaService.salvar(vaga);
+            }
+        }
+        catch (Exception exception) {
+            System.out.println("Erro no scheduler: " + exception.getMessage());
+        }
     }
 }

@@ -72,7 +72,7 @@ public class VagaController {
     @GetMapping("/expiradas")
     public List<Vaga> buscarVagasExpiradas() {
         try {
-            return vagaService.buscarVagasExpiradas();
+            return vagaService.buscarVagasParaExpiracao();
         }
         catch(Exception ex) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());

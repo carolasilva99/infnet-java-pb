@@ -2,14 +2,13 @@ package br.com.carolina.venturahr_candidatura.model.domain;
 
 import br.com.carolina.venturahr_candidatura.model.domain.enums.StatusUsuario;
 import br.com.carolina.venturahr_candidatura.model.domain.enums.TipoUsuario;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Entity
 public abstract class Usuario {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String email;
     private String endereco;

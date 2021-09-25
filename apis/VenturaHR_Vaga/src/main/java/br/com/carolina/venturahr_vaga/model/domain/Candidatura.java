@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 public class Candidatura {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne

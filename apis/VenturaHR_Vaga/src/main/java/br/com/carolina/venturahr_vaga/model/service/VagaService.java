@@ -21,8 +21,6 @@ import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatc
 
 @Service
 public class VagaService {
-    private static final long TEMPO_EXPIRACAO_EM_DIAS = 1;
-
     @Autowired
     private VagaRepository vagaRepository;
 
@@ -72,6 +70,7 @@ public class VagaService {
                 .pmd(null)
                 .cargo(cargo)
                 .status(StatusVaga.from(status))
+                .empresa(new Empresa(empresaId))
                 .build();
         return vagaRepository.findAll(Example.of(exemplo, matcher));
     }
@@ -92,9 +91,14 @@ public class VagaService {
         vagaRepository.save(vaga);
     }
 
-    public List<Vaga> buscarVagasExpiradas() {
-        LocalDateTime tempoLimiteParaExpiracao = LocalDateTime.now().minusDays(TEMPO_EXPIRACAO_EM_DIAS);
+    public List<Vaga> buscarVagasParaExpiracao() {
+        LocalDateTime tempoLimiteParaExpiracao = LocalDateTime.now().minusDays(Vaga.TEMPO_EXPIRACAO_EM_DIAS);
         return vagaRepository.findAllByDataInicioBeforeAndStatus(tempoLimiteParaExpiracao, StatusVaga.ABERTA);
+    }
+
+    public List<Vaga> buscarVagasParaFinalizacao() {
+        LocalDateTime tempoLimiteParaFinalizacao = LocalDateTime.now().minusDays(Vaga.TEMPO_FINALIZACAO_EM_DIAS);
+        return vagaRepository.findAllByDataInicioBeforeAndStatus(tempoLimiteParaFinalizacao, StatusVaga.EXPIRADA);
     }
 
     public void salvarTodas(List<Vaga> vagas) {

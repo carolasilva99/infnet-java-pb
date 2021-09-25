@@ -1,7 +1,7 @@
 package br.com.carolina.venturahr_web;
 
 import br.com.carolina.venturahr_web.model.domain.Usuario;
-import br.com.carolina.venturahr_web.model.error.ErroNaAutenticacaoException;
+import br.com.carolina.venturahr_web.model.error.ErroApiException;
 import br.com.carolina.venturahr_web.model.service.LoginService;
 
 import javax.servlet.RequestDispatcher;
@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.stream.Collectors;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -57,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 
             requestDispatcher.forward(req, resp);
         }
-        catch(ErroNaAutenticacaoException ex) {
+        catch(ErroApiException ex) {
             req.setAttribute("mensagem_erro", ex.getMessage());
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/");
             requestDispatcher.forward(req, resp);
