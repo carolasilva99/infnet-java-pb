@@ -5,6 +5,9 @@ Este projeto foi criado para a disciplina de Projeto de Bloco do bloco de Desenv
 - O projeto foi dividido em 4 micro-serviços feitos em Spring Boot. O banco utilizado foi o MySQL.
 - O front-end foi feito através de Java EE com Tomcat Server 9.0.50.
 
+## Postman
+Foram criadas collections do Postman para auxiliar a visualização das chamadas às APIs desenvolvidas, que podem ser encontradas [aqui](https://www.postman.com/carolasilva99/workspace/infnet-java-pb-at)
+
 ## Como rodar
 Depois de clonar o repositório, os seguintes passos são necessários:
 1. Adicionar nas variáveis de ambiente de todos os micro-serviços as seguintes variáveis:
